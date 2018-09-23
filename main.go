@@ -126,7 +126,7 @@ func parseInstruction(opCode uint8, registers uint8, offset uint16, immediate ui
 		srcStr := "BPF_K"
 		if src == bpfX {
 			srcReg = fmt.Sprintf("BPF_REG_%d", ((registers >> 4) & 0xF))
-			srcStr = "bpfX"
+			srcStr = "BPF_X"
 		}
 		op := bpfAluOps[(opCode & 0xF0)]
 		return fmt.Sprintf("%s | %s | %s, %s, %s, %d, %d", bpfInsClasses[insClass], srcStr, op, dstReg, srcReg, offset, immediate)
@@ -141,7 +141,7 @@ func parseInstruction(opCode uint8, registers uint8, offset uint16, immediate ui
 		srcStr := "BPF_K"
 		if src == bpfX {
 			srcReg = fmt.Sprintf("BPF_REG_%d", ((registers >> 4) & 0xF))
-			srcStr = "bpfX"
+			srcStr = "BPF_X"
 		}
 		return fmt.Sprintf("%s | %s | %s, %s, %s, %d, %d", bpfInsClasses[insClass], srcStr, bpfJmpOps[op], dstReg, srcReg, offset, immediate)
 	default:
